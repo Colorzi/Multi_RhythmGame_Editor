@@ -42,7 +42,7 @@ public class MusicController : MonoBehaviour
     {
         if (audioSource.clip != null)
         {
-            audioSource.volume = 0.2f;
+            audioSource.volume = 0.5f;
             audioSource.Play();
         }
     }

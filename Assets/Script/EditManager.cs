@@ -24,12 +24,14 @@ public class EditManager : MonoBehaviour
     public AudioSource audioSource;
     float railLength;
     float currentMusicTime;
-    
+
+    public GameObject noteLinePrefab;
+    public List<GameObject> lines = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
@@ -43,6 +45,18 @@ public class EditManager : MonoBehaviour
         rail = Instantiate(railPrefab, judgeLine.transform.position, Quaternion.identity);
         railLength = (audioSource.clip.length / 0.3f) * beatLineDistance;
         rail.transform.localScale = new Vector2(judgeLine.transform.localScale.x, railLength);
+        CreateLines();
+    }
+
+    void CreateLines()
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            GameObject lineObject = Instantiate(noteLinePrefab);
+            lineObject.GetComponent<Line>().number = i;
+            lineObject.SetActive(false);
+            lines.Add(lineObject);
+        }
     }
 
     private void RailMove()
